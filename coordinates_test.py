@@ -41,5 +41,30 @@ class CoordinatesTest(unittest.TestCase):
         self.assertRaises(TypeError, Coordinates, ["15", 0])
         self.assertRaises(TypeError, Coordinates, [0, "15"])
 
+    def test_set_x_and_y(self):
+        coordinates = Coordinates()
+        self.assertEqual(0, coordinates.x)
+        self.assertEqual(0, coordinates.y)
+
+        coordinates.x = 5
+        self.assertEqual(5, coordinates.x)
+        self.assertEqual(0, coordinates.y)
+
+        coordinates.y = -100
+        self.assertEqual(5, coordinates.x)
+        self.assertEqual(-100, coordinates.y)
+
+    def test_set_invalid_x_and_y(self):
+        coordinates = Coordinates()
+        self.assertRaises(TypeError, coordinates.x, "Mountaineer")
+        self.assertRaises(TypeError, coordinates.y, "Mountaineer")
+        self.assertRaises(TypeError, coordinates.x, 1.0001)
+        self.assertRaises(TypeError, coordinates.y, 1.0001)
+        self.assertRaises(TypeError, coordinates.x, True)
+        self.assertRaises(TypeError, coordinates.y, True)
+        self.assertRaises(TypeError, coordinates.x, None)
+        self.assertRaises(TypeError, coordinates.y, None)
+
+
 if __name__ == '__main__':
     unittest.main()
