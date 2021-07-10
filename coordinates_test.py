@@ -65,6 +65,21 @@ class CoordinatesTest(unittest.TestCase):
         self.assertRaises(TypeError, coordinates.x, None)
         self.assertRaises(TypeError, coordinates.y, None)
 
+    def test_coordinate_equality(self):
+        coordinates_1 = Coordinates(0, 1)
+        coordinates_2 = Coordinates(0, 1)
+        coordinates_3 = Coordinates(-10, 156)
+        coordinates_4 = Coordinates(-10, 156)
+
+        self.assertTrue(coordinates_1 == coordinates_2)
+        self.assertTrue(coordinates_2 == coordinates_1)
+        self.assertTrue(coordinates_3 == coordinates_4)
+        self.assertTrue(coordinates_4 == coordinates_3)
+
+        self.assertFalse(coordinates_1 == coordinates_3)
+        self.assertFalse(coordinates_4 == coordinates_1)
+        self.assertFalse(coordinates_2 == coordinates_3)
+        self.assertFalse(coordinates_4 == coordinates_2)
 
 if __name__ == '__main__':
     unittest.main()

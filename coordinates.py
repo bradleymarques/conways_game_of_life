@@ -25,3 +25,9 @@ class Coordinates:
             self._y = new_y
         else:
             raise TypeError
+
+    def __eq__(self, other):
+        if isinstance(other, Coordinates):
+            return(self.x == other.x and self.y == other.y)
+        else:
+            False

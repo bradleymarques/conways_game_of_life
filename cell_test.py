@@ -1,8 +1,13 @@
 import unittest
 from cell_state import CellState
 from cell import Cell
+from coordinates import Coordinates
 
 class CellTest(unittest.TestCase):
+
+    def test_default_initialization(self):
+        cell = Cell()
+        self.assertEqual(CellState.DEAD, cell.state)
 
     def test_initialization_of_dead_cell(self):
         cell = Cell(CellState.DEAD)
@@ -11,10 +16,6 @@ class CellTest(unittest.TestCase):
     def test_initialization_of_alive_cell(self):
         cell = Cell(CellState.ALIVE)
         self.assertEqual(CellState.ALIVE, cell.state)
-
-    def test_default_initialization(self):
-        cell = Cell()
-        self.assertEqual(CellState.DEAD, cell.state)
 
     def test_invalid_initialization(self):
         self.assertRaises(TypeError, Cell, 0)
