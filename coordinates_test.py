@@ -81,5 +81,5 @@ class CoordinatesTest(unittest.TestCase):
         self.assertFalse(coordinates_2 == coordinates_3)
         self.assertFalse(coordinates_4 == coordinates_2)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

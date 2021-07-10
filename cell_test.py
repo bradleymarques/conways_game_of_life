@@ -8,6 +8,9 @@ class CellTest(unittest.TestCase):
     def test_default_initialization(self):
         cell = Cell()
         self.assertEqual(CellState.DEAD, cell.state)
+        self.assertEqual(Coordinates(0, 0), cell.coordinates)
+        self.assertEqual(0, cell.coordinates.x)
+        self.assertEqual(0, cell.coordinates.y)
 
     def test_initialization_of_dead_cell(self):
         cell = Cell(CellState.DEAD)
@@ -16,6 +19,11 @@ class CellTest(unittest.TestCase):
     def test_initialization_of_alive_cell(self):
         cell = Cell(CellState.ALIVE)
         self.assertEqual(CellState.ALIVE, cell.state)
+
+    def test_initialization_of_cell_at_coordinates(self):
+        cell = Cell(coordinates = Coordinates(4, -6))
+        self.assertEqual(4, cell.coordinates.x)
+        self.assertEqual(-6, cell.coordinates.y)
 
     def test_invalid_initialization(self):
         self.assertRaises(TypeError, Cell, 0)
@@ -43,5 +51,5 @@ class CellTest(unittest.TestCase):
         self.assertRaises(TypeError, cell.state, False)
         self.assertRaises(TypeError, cell.state, None)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
