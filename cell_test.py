@@ -1,5 +1,5 @@
-from cell_state import CellState
 import unittest
+from cell_state import CellState
 from cell import Cell
 
 class CellTest(unittest.TestCase):
@@ -12,6 +12,10 @@ class CellTest(unittest.TestCase):
         cell = Cell(CellState.ALIVE)
         self.assertEqual(CellState.ALIVE, cell.state)
 
+    def test_default_initialization(self):
+        cell = Cell()
+        self.assertEqual(CellState.DEAD, cell.state)
+
     def test_invalid_initialization(self):
         self.assertRaises(TypeError, Cell, 0)
         self.assertRaises(TypeError, Cell, None)
@@ -22,14 +26,21 @@ class CellTest(unittest.TestCase):
     def test_set_state_from_dead_to_alive(self):
         cell = Cell(CellState.DEAD)
         self.assertEqual(CellState.DEAD, cell.state)
-        cell.setState(CellState.ALIVE)
+        cell.state = CellState.ALIVE
         self.assertEqual(CellState.ALIVE, cell.state)
 
     def test_set_state_from_alive_to_dead(self):
         cell = Cell(CellState.ALIVE)
         self.assertEqual(CellState.ALIVE, cell.state)
-        cell.setState(CellState.DEAD)
+        cell.state = CellState.DEAD
         self.assertEqual(CellState.DEAD, cell.state)
+
+    def test_set_invalid_state(self):
+        cell = Cell(CellState.ALIVE)
+        self.assertRaises(TypeError, cell.state, "Dead parrot")
+        self.assertRaises(TypeError, cell.state, 0)
+        self.assertRaises(TypeError, cell.state, False)
+        self.assertRaises(TypeError, cell.state, None)
 
 if __name__ == '__main__':
     unittest.main()

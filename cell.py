@@ -1,3 +1,4 @@
+import operator
 from cell_state import CellState
 
 ##
@@ -5,11 +6,14 @@ from cell_state import CellState
 # A Cell can either be alive or dead
 #
 class Cell:
-    def __init__(self, state: CellState):
-        if state in CellState:
-            self.state = state
+    def __init__(self, state: CellState = CellState.DEAD):
+        self.state = state
+
+    state = property(operator.attrgetter("_state"))
+
+    @state.setter
+    def state(self, new_state: CellState):
+        if new_state in CellState:
+            self._state = new_state
         else:
             raise TypeError
-
-    def setState(self, new_state: CellState):
-        self.state = new_state
